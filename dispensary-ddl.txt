@@ -1,0 +1,51 @@
+DROP DATABASE IF EXISTS dispensary;
+
+CREATE DATABASE IF NOT EXISTS dispensary CHARACTER SET UTF8mb4 COLLATE utf8mb4_bin;
+USE dispensary;
+
+CREATE TABLE box_storage (
+	box_id VARCHAR(3) NOT NULL,
+	storage_id VARCHAR(3) NOT NULL,
+	PRIMARY KEY (box_id)
+) ENGINE=InnoDB;
+
+CREATE TABLE drug (
+	drug_number INT(10) NOT NULL,
+	name VARCHAR(255) NOT NULL,
+	price FLOAT(4) NOT NULL,
+	box_id VARCHAR(3) NOT NULL,
+	quantity INT(10) NOT NULL,
+	PRIMARY KEY (drug_number)
+) ENGINE=InnoDB;
+
+CREATE TABLE city_zip (
+	zip_code INT(5) NOT NULL,
+	city VARCHAR(255) NOT NULL,
+	PRIMARY KEY (zip_code)
+) ENGINE=InnoDB;
+
+CREATE TABLE customer (
+	id INT(10) NOT NULL,
+	name VARCHAR(255) NOT NULL,
+	street VARCHAR(255) NOT NULL,
+	zip_code INTEGER(5) NOT NULL,
+	date_of_birth DATE NOT NULL,
+	service_pin INT(4) NOT NULL,
+	PRIMARY KEY(id)
+) ENGINE=InnoDB;
+
+CREATE TABLE order (
+	id INT(10) NOT NULL,
+	customer_id INT(10) NOT NULL,
+	order_date DATE NOT NULL,
+	PRIMARY KEY (id)
+) ENGINE=InnoDB;
+
+CREATE TABLE order_drugs (
+	id INT(10) NOT NULL,
+	drug INT(10) NOT NULL,
+	quantity INT(10),
+	PRIMARY KEY (id, drug)
+) ENGINE=InnoDB;
+
+

@@ -1,0 +1,149 @@
+827115
+891950
+986595
+851685
+379659
+409789
+502006
+870345
+961051
+655844
+835339
+912620
+712012
+299548
+678876
+359336
+301181
+917859
+796833
+925535
+611243
+168226
+197982
+745404
+
+ASPIRIN Complex Granulat
+Bepanthen Wund- und Heilsalbe
+Paracetamol-ratiopharm 500 mg
+IBU-ratiopharm 400 mg
+ASS-ratiopharm 500 mg
+HYDROCORTISON-ratiopharm 0,5% Creme
+Panthenol-ratiopharm Wundbalsam
+Nasenspray-ratiopharm Panthenol
+Hyaluron-ratiopharm Augentropfen
+Paracetamol-ratiopharm 250 mg Zäpfchen
+Magnesium Diasporal 300 mg
+Canesten EXTRA Bifonazol Creme
+Fungizid-ratiopharm Creme
+Chlorhexamed FORTE alkoholfrei
+WALA Euphrasia Augentropfen
+Bepanthen Augentropfen
+Bepanthen Meerwasser-Nasenspray
+GeloMyrtol forte
+ACC akut 600 mg Hustenlöser
+Umckaloabo Lösung
+PVP-Jod-Salbe Lichtenstein 100 mg
+Priorin Liquid
+Calcium-Sandoz Forte
+Sinupret extract
+
+10.14
+10.99
+2.02
+6.92
+6.12
+5.49
+5.53
+3.29
+16.16
+1.22
+26.46
+15.18
+6.00
+10.12
+8.33
+18.60
+4.77
+19.98
+5.99
+15.55
+8.06
+23.94
+9.58
+21.44
+
+A5X
+LS0
+YC0
+PEQ
+S5P
+VPK
+PL1
+O9G
+05R
+1PH
+YCZ
+NGV
+4IX
+Q27
+6NK
+UBG
+5DB
+1X4
+H7A
+4PA
+7DP
+AF1
+VE5
+VXR
+
+10
+25
+10
+48
+11
+22
+39
+24
+50
+14
+20
+15
+29
+28
+11
+35
+13
+46
+26
+49
+27
+40
+34
+37
+
+FSM
+WAD
+UCU
+RAM
+FSM
+FSM
+RAM
+FQW
+FSM
+FQW
+WAD
+BQA
+WAD
+BDQ
+FSM
+BDQ
+SUH
+UIP
+FSM
+RAM
+WAD
+SUH
+BMR
+FSM
