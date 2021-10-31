@@ -1,0 +1,12 @@
+USE pharmacy;
+
+DELIMITER $$
+CREATE TRIGGER drug_name_price_validator
+    BEFORE UPDATE
+    ON drugs FOR EACH ROW
+    IF ((NEW.name <> OLD.name) OR (NEW.drug_number <> OLD.drug_number)) 
+    AND (OLD.protected = 1)
+        THEN
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'drug name and number is read-only and cannot be changed';
+END IF $$
+DELIMITER ;

@@ -1,0 +1,45 @@
+USE pharmacy;
+
+DELIMITER $$
+CREATE TRIGGER audit_drug_insert
+    BEFORE INSERT
+    ON drugs FOR EACH ROW
+        INSERT INTO drugs_insert_audit
+        SET drug_number = NEW.drug_number,
+            name = NEW.name,
+            price = NEW.price,
+            mysql_user = USER(),
+            action_timestamp = CURRENT_TIMESTAMP();
+$$
+
+
+DELIMITER $$
+CREATE TRIGGER audit_drug_quantity_update
+    BEFORE UPDATE
+    ON drugs FOR EACH ROW
+    IF (NEW.quantity <> OLD.quantity)
+        THEN
+            INSERT INTO drugs_update_audit
+            SET drug_number = NEW.drug_number,
+                name = NEW.name,
+                old_quantity = OLD.quantity,
+                new_quantity = NEW.quantity,
+                mysql_user = USER(),
+                action_timestamp = CURRENT_TIMESTAMP();
+END IF $$
+
+
+DELIMITER $$
+CREATE TRIGGER audit_drug_delete
+    BEFORE DELETE
+    ON drugs FOR EACH ROW
+        INSERT INTO drugs_delete_audit
+        SET drug_number = OLD.drug_number,
+            name = OLD.name,
+            price = OLD.price,
+            box_id = OLD.box_id,
+            quantity = OLD.quantity,
+            mysql_user = USER(),
+            action_timestamp = CURRENT_TIMESTAMP();
+$$
+DELIMITER ;

@@ -1,0 +1,18 @@
+USE pharmacy;
+
+ALTER TABLE drugs ADD INDEX (drug_number);
+
+EXPLAIN SELECT drugs.drug_number, drugs.name AS drug_name, boxes_storage.storage_id, drugs.box_id
+FROM drugs
+INNER JOIN boxes_storage ON boxes_storage.box_id = drugs.box_id
+ORDER BY drugs.name ASC, drugs.quantity ASC;
+
+ALTER TABLE customers ADD INDEX (name);
+
+EXPLAIN SELECT customers.name AS customer_name, orders.id AS order_id, orders.order_date, orders_drugs.drug_number, drugs.name AS drug_name, orders_drugs.quantity, drugs.price
+FROM customers
+INNER JOIN orders ON orders.customer_id = customers.id
+INNER JOIN orders_drugs ON orders_drugs.id = orders.id
+INNER JOIN drugs ON drugs.drug_number = orders_drugs.drug_number
+WHERE drugs.name REGEXP '^[AaCc]'
+ORDER BY drugs.name ASC;

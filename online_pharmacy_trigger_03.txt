@@ -1,0 +1,13 @@
+USE pharmacy;
+
+DELIMITER $$
+CREATE TRIGGER prevent_negative_quantity
+    BEFORE UPDATE
+    ON drugs FOR EACH ROW
+    IF (NEW.quantity < 0)
+    OR NOT(NEW.quantity <> OLD.quantity)
+    OR (NEW.quantity > 50)
+        THEN
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'new quantity must be different from the old value, must not be negative and must be below 51';
+END IF $$
+DELIMITER ;
