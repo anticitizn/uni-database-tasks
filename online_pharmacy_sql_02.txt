@@ -1,2 +1,7 @@
 USE pharmacy;
 
+SELECT customers.name AS customer_name, orders.id AS order_id, orders.order_date, drugs.drug_number, drugs.name AS drug_name, orders_drugs.quantity, drugs.price AS drug_price
+FROM customers
+INNER JOIN orders ON orders.customer_id = customers.id
+INNER JOIN orders_drugs ON orders_drugs.id = orders.id
+INNER JOIN drugs ON drugs.drug_number = orders_drugs.drug_number;
