@@ -14,7 +14,7 @@ CREATE TABLE drugs (
 	name VARCHAR(255) NOT NULL,
 	price FLOAT(4) NOT NULL,
 	box_id VARCHAR(3) NOT NULL,
-	quantity INT(10),
+	quantity INT(10) NOT NULL,
 	protected INT(1) NOT NULL,
 	PRIMARY KEY (drug_number)
 ) ENGINE=InnoDB;
@@ -93,8 +93,8 @@ CREATE TABLE drugs_update_audit (
 	id INT(10) NOT NULL AUTO_INCREMENT,
 	drug_number INT(6) NOT NULL,
 	name VARCHAR(255) NOT NULL,
-	old_quantity INT(10),
-	new_quantity INT(10),
+	old_quantity INT(10) NOT NULL,
+	new_quantity INT(10) NOT NULL,
 	mysql_user VARCHAR(255) NOT NULL,
 	action_timestamp TIMESTAMP NOT NULL,
 	PRIMARY KEY (id)
@@ -106,7 +106,7 @@ CREATE TABLE drugs_delete_audit (
 	name VARCHAR(255) NOT NULL,
 	price FLOAT(4) NOT NULL,
 	box_id VARCHAR(3) NOT NULL,
-	quantity INT(10),
+	quantity INT(10) NOT NULL,
 	mysql_user VARCHAR(255) NOT NULL,
 	action_timestamp TIMESTAMP NOT NULL,
 	PRIMARY KEY (id)
