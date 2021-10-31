@@ -1,0 +1,9 @@
+# Non-repeatable read
+Die zwei SELECT Statements in Transaction 1 zeigen unterschiedliche Werte an, obwohl Transaction 1 den Zustand der Datenbank nicht verändert hat.
+-> Verstoß gegen Isolation
+
+| Sequence | Transaction 1                                             | Transaction 2                                                        |
+|----------|-----------------------------------------------------------|----------------------------------------------------------------------|
+| 1        | SELECT * FROM drugs WHERE drugs.name LIKE "%ratiopharm%"; |                                                                      |
+| 2        |                                                           | UPDATE drugs SET quantity = quantity + 5 WHERE drug_number = 712012; |
+| 3        | SELECT * FROM drugs WHERE drugs.name LIKE "%ratiopharm%"; |                                                                      |

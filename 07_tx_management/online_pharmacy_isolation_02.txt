@@ -1,0 +1,9 @@
+# Dirty read
+Nach der ROLLBACK-Anweisung in Transaktion 1 sind die Werte, die Transaktion 2 gelesen hat, "verschmutzt" und stimmen nicht mehr mit den tatsächlichen Werten der Datenbank überein.
+-> Verstoß gegen Consistency oder Isolation
+
+| Sequence | Transaction 1                                                        | Transaction 2                                                        |
+|----------|----------------------------------------------------------------------|----------------------------------------------------------------------|
+| 1        | UPDATE drugs SET quantity = quantity + 5 WHERE drug_number = 712012; |                                                                      |
+| 2        |                                                                      | UPDATE drugs SET quantity = quantity - 2 WHERE drug_number = 712012; |
+| 3        | ROLLBACK                                                             |                                                                      |
