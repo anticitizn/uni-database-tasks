@@ -1,0 +1,6 @@
+USE pharmacy;
+
+SELECT * 
+FROM drugs
+WHERE drugs.drug_number NOT IN (SELECT drug_number FROM orders_drugs)
+ORDER BY drugs.drug_number ASC;

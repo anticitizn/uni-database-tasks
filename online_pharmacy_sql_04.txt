@@ -1,0 +1,7 @@
+USE pharmacy;
+
+SELECT drugs.name AS drug_name, COUNT(orders_drugs.drug_number) as 'count'
+FROM drugs
+INNER JOIN orders_drugs ON orders_drugs.drug_number = drugs.drug_number
+GROUP BY drugs.name
+HAVING COUNT(orders_drugs.drug_number) > 5;

@@ -1,0 +1,6 @@
+USE pharmacy;
+
+SELECT drugs.drug_number, drugs.name AS drug_name, boxes_storage.storage_id, drugs.box_id
+FROM drugs
+INNER JOIN boxes_storage ON boxes_storage.box_id = drugs.box_id
+ORDER BY drugs.name ASC, drugs.quantity ASC;

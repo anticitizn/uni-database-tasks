@@ -1,0 +1,7 @@
+USE pharmacy;
+
+SELECT * 
+FROM drugs
+WHERE (drugs.name LIKE "%Augentropfen%" OR drugs.name LIKE "%Nasenspray%")
+AND (drugs.name LIKE "%ratiopharm%")
+ORDER BY drugs.quantity ASC;
