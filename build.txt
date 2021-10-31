@@ -1,0 +1,2 @@
+SOURCE online_pharmacy_ddl.txt;
+SOURCE online_pharmacy_dml.txt;

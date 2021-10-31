@@ -49,7 +49,7 @@ ON DELETE CASCADE;
 CREATE TABLE orders (
 	id INT(10) NOT NULL,
 	customer_id INT(10) NOT NULL,
-	order_date DATE NOT NULL,
+	order_date TIMESTAMP NOT NULL,
 	PRIMARY KEY (id)
 ) ENGINE=InnoDB;
 
