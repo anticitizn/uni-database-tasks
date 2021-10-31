@@ -61,9 +61,9 @@ ON DELETE CASCADE;
 
 CREATE TABLE orders_drugs (
 	id INT(10) NOT NULL,
-	drug_id INT(10) NOT NULL,
+	drug_number INT(6) NOT NULL,
 	quantity INT(10) NOT NULL,
-	PRIMARY KEY (id, drug_id)
+	PRIMARY KEY (id, drug_number)
 ) ENGINE=InnoDB;
 
 ALTER TABLE orders_drugs ADD CONSTRAINT fk_orders_id
@@ -72,8 +72,8 @@ REFERENCES orders(id)
 ON UPDATE CASCADE
 ON DELETE CASCADE;
 
-ALTER TABLE orders_drugs ADD CONSTRAINT fk_order_drug_id
-FOREIGN KEY (drug_id)
+ALTER TABLE orders_drugs ADD CONSTRAINT fk_order_drug_number
+FOREIGN KEY (drug_number)
 REFERENCES drugs(drug_number)
 ON UPDATE CASCADE
 ON DELETE CASCADE;
