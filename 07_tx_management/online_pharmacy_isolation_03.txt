@@ -1,0 +1,8 @@
+# Phantom read
+Spezialfall von Dirty Read; Transasction 1 sieht das neue Drug beim ersten SELECT nicht, aber das neue Drug wird im Ergebnis des zweiten SELECTs berücksichtigt
+
+| Sequence | Transaction 1                                                         | Transaction 2                                                                    |
+|----------|-----------------------------------------------------------------------|----------------------------------------------------------------------------------|
+| 1        | SELECT * FROM drugs WHERE drugs.name LIKE "%ratiopharm%";             |                                                                                  |
+| 2        |                                                                       | INSERT INTO drugs VALUES(420690, 'No-Hangover ratiopharm', 19.25, 'ASX', 10, 0); |
+| 3        | SELECT SUM(quantity) FROM drugs WHERE drugs.name LIKE "%ratiopharm%"; |                                                                                  |

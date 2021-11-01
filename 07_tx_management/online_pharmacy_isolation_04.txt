@@ -1,0 +1,14 @@
+# Lost Update
+Wenn zwei Transaktionen gleichzeitig stattfinden, ist es möglich, dass die Änderungen der einen Transaktion von der anderen überschrieben werden und verloren gehen.
+
+Transaction 1: UPDATE drugs SET quantity = quantity + 5 WHERE drug_number = 712012;
+Transaction 2: UPDATE drugs SET quantity = quantity - 1 WHERE drug_number = 712012;
+
+| Sequence | Transaction 1            | Transaction 2            |
+|----------|--------------------------|--------------------------|
+| 1        | read(drugs.quantity, x)  |                          |
+| 2        |                          | read(drugs.quantity, y)  |
+|          |                          | y -= 1                   |
+|          |                          | write(drugs.quantity, y) |
+| 3        | x += 5                   |                          |
+|          | write(drugs.quantity, x) |                          |
