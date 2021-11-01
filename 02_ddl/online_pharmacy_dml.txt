@@ -1,19 +1,19 @@
 USE db2458151;
 
-LOAD DATA INFILE '03_import/import_boxes_storage.csv' INTO TABLE boxes_storage
+LOAD DATA INFILE '../03_import/import_boxes_storage.csv' INTO TABLE boxes_storage
 FIELDS TERMINATED BY ',' LINES TERMINATED BY '\r\n';
 
-LOAD DATA INFILE '03_import/import_drugs.csv' INTO TABLE drugs
+LOAD DATA INFILE '../03_import/import_drugs.csv' INTO TABLE drugs
 FIELDS TERMINATED BY ',' LINES TERMINATED BY '\r\n';
 
-LOAD DATA INFILE '03_import/import_cities_zip.csv' INTO TABLE cities_zip
+LOAD DATA INFILE '../03_import/import_cities_zip.csv' INTO TABLE cities_zip
 FIELDS TERMINATED BY ',' LINES TERMINATED BY '\r\n';
 
-LOAD DATA INFILE '03_import/import_customers.csv' INTO TABLE customers
+LOAD DATA INFILE '../03_import/import_customers.csv' INTO TABLE customers
 FIELDS TERMINATED BY ',' LINES TERMINATED BY '\r\n';
 
-LOAD DATA INFILE '03_import/import_orders.csv' INTO TABLE orders
+LOAD DATA INFILE '../03_import/import_orders.csv' INTO TABLE orders
 FIELDS TERMINATED BY ',' LINES TERMINATED BY '\r\n';
 
-LOAD DATA INFILE '03_import/import_orders_drugs.csv' INTO TABLE orders_drugs
+LOAD DATA INFILE '../03_import/import_orders_drugs.csv' INTO TABLE orders_drugs
 FIELDS TERMINATED BY ',' LINES TERMINATED BY '\r\n';
