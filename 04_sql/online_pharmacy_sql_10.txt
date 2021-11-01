@@ -1,4 +1,4 @@
-USE pharmacy;
+USE db2458151;
 
 SELECT drugs.drug_number, drugs.name AS drug_name, boxes_storage.storage_id, drugs.box_id
 FROM drugs

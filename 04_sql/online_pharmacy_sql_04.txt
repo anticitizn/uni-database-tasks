@@ -1,4 +1,4 @@
-USE pharmacy;
+USE db2458151;
 
 SELECT drugs.name AS drug_name, COUNT(orders_drugs.drug_number) as 'count'
 FROM drugs

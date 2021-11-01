@@ -1,4 +1,4 @@
-USE pharmacy;
+USE db2458151;
 
 ALTER TABLE drugs ADD INDEX (drug_number);
 

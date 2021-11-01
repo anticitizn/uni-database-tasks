@@ -1,4 +1,4 @@
-USE pharmacy;
+USE db2458151;
 
 SELECT customers.name AS customer_name, orders.id AS order_id, orders.order_date, orders_drugs.drug_number, drugs.name AS drug_name, orders_drugs.quantity, drugs.price
 FROM customers
