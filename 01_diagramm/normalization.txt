@@ -1,4 +1,46 @@
-UNF
+# UNF
+
+```
+ drugs | pk = {drug_number}
++-------------+-----------------------------------------+-------+--------+----------+--------+------------+
+| drug_number | name                                    | price | box_id | quantity | box_id | storage_id |
++-------------+-----------------------------------------+-------+--------+----------+--------+------------+
+|      168226 | Priorin Liquid                          | 23.94 | AF1    |       40 | AF1    | SUH        |
+|      197982 | Calcium-Sandoz Forte                    |  9.58 | VE5    |       34 | VE5    | BMR        |
+|      299548 | Chlorhexamed FORTE alkoholfrei          | 10.12 | Q27    |       28 | Q27    | BDQ        |
+|      301181 | Bepanthen Meerwasser-Nasenspray         |  4.77 | 5DB    |       13 | 5DB    | SUH        |
+|      359336 | Bepanthen Augentropfen                  |  18.6 | UBG    |       35 | UBG    | BDQ        |
+|      379659 | ASS-ratiopharm 500 mg                   |  6.12 | S5P    |       11 | S5P    | FSM        |
+|      409789 | HYDROCORTISON-ratiopharm 0.5% Creme     |  5.49 | VPK    |       22 | VPK    | FSM        |
+|      502006 | Panthenol-ratiopharm Wundbalsam         |  5.53 | PL1    |       39 | PL1    | RAM        |
+|      611243 | PVP-Jod-Salbe Lichtenstein 100 mg       |  8.06 | 7DP    |       27 | 7DP    | WAD        |
+|      655844 | Paracetamol-ratiopharm 250 mg Zäpfchen  |  1.22 | 1PH    |       14 | 1PH    | FQW        |
+|      678876 | WALA Euphrasia Augentropfen             |  8.33 | 6NK    |       11 | 6NK    | FSM        |
+|      712012 | Fungizid-ratiopharm Creme               |     6 | 4IX    |       29 | 4IX    | WAD        |
+|      745404 | Sinupret extract                        | 21.44 | VXR    |       37 | VXR    | FSM        |
+|      796833 | ACC akut 600 mg Hustenlöser             |  5.99 | H7A    |       26 | H7A    | FSM        |
+|      827115 | ASPIRIN Complex Granulat                | 10.14 | A5X    |       10 | A5X    | FSM        |
+|      835339 | Magnesium Diasporal 300 mg              | 26.46 | YCZ    |       20 | YCZ    | WAD        |
+|      851685 | IBU-ratiopharm 400 mg                   |  6.92 | PEQ    |       48 | PEQ    | RAM        |
+|      870345 | Nasenspray-ratiopharm Panthenol         |  3.29 | O9G    |       24 | O9G    | FQW        |
+|      891950 | Bepanthen Wund- und Heilsalbe           | 10.99 | LS0    |       25 | LS0    | WAD        |
+|      912620 | Canesten EXTRA Bifonazol Creme          | 15.18 | NGV    |       15 | NGV    | BQA        |
+|      917859 | GeloMyrtol forte                        | 19.98 | 1X4    |       46 | 1X4    | UIP        |
+|      925535 | Umckaloabo Lösung                       | 15.55 | 4PA    |       49 | 4PA    | RAM        |
+|      961051 | Hyaluron-ratiopharm Augentropfen        | 16.16 | 05R    |       50 | 05R    | FSM        |
+|      986595 | Paracetamol-ratiopharm 500 mg           |  2.02 | YC0    |       10 | YC0    | UCU        |
++-------------+-----------------------------------------+-------+--------+----------+--------+------------+
+
+ customers | pk = {id}
++----+-------------------+-----------------------------+----------+-----------------+---------------+-------------+
+| id | name              | street                      | zip_code | city            | date_of_birth | service_pin |
++----+-------------------+-----------------------------+----------+-----------------+---------------+-------------+
+|  1 | Thomas Krause     | Leopoldstraße 64            |    97980 | Bad Mergentheim | 1973-11-19    |        8107 |
+|  2 | Stefanie Theissen | Genslerstraße 52            |    97980 | Bad Mergentheim | 1989-03-25    |        8382 |
+|  3 | Mike Mayer        | Brandenburgische Straße 79  |    97980 | Bad Mergentheim | 1981-04-09    |        5706 |
+|  4 | Ralph Achen       | Bayreuther Straße 86        |    97980 | Bad Mergentheim | 1969-05-17    |        6295 |
+|  5 | Swen Schweizer    | Los-Angeles-Platz 85        |    97980 | Bad Mergentheim | 1978-08-07    |        5001 |
++----+-------------------+-----------------------------+----------+-----------------+---------------+-------------+
 
  orders | pk = {id}
 | id | customer_id | order_date          | drugs                        |
@@ -6,9 +48,13 @@ UNF
 | 1  | 1           | 18.01.2021 14:33:52 | 1x912620, 2x359336, 1x870345 |
 | 2  | 4           | 18.01.2021 19:20:25 | 1x611243, 1x299548, 2x851685 |
 | 3  | 2           | 18.01.2021 20:11:05 | 1x835339, 1x961051, 1x197982 |
+```
 
 # 1. NF
+> Jede Tabellenzeile muss nur einen Wert enthalten
+- orders.drugs enthält mehrere Werte -> in 2 Tabellen verteilen
 
+```
  orders | pk = {id}
 | id | customer_id | order_date          |
 |----|-------------|---------------------|
@@ -17,21 +63,104 @@ UNF
 | 3  | 2           | 18.01.2021 20:11:05 |
 
  orders_drugs | pk = {order_id, drug_id}
-| order_id | drug_id | quantity |
-|----------|---------|----------|
-| 1        | 912620  | 1        |
-| 1        | 359336  | 2        |
-| 1        | 870345  | 1        |
-| 2        | 611243  | 1        |
-| 2        | 299548  | 1        |
-| 2        | 851685  | 2        |
-| 3        | 835339  | 1        |
-| 3        | 961051  | 1        |
-| 3        | 197982  | 1        |
-
+| order_id | drug_number | quantity |
+|----------|-------------|----------|
+| 1        | 912620      | 1        |
+| 1        | 359336      | 2        |
+| 1        | 870345      | 1        |
+| 2        | 611243      | 1        |
+| 2        | 299548      | 1        |
+| 2        | 851685      | 2        |
+| 3        | 835339      | 1        |
+| 3        | 961051      | 1        |
+| 3        | 197982      | 1        |
+```
 
 # 2. NF
- - Die Tabelle liegt schon in zweiter Normalform vor
+> Die Tabellen liegen schon in zweiter Normalform vor
  
  # 3. NF
-- 
+> Jede transitive Abhängigkeit muss, wenn möglich, entfernt werden
+- city_name nur von zip_code abhängig -> neue Tabelle anlegen
+- storage_id nur von storage_id abhängig -> neue Tabelle anlegen
+
+```
+ customers | pk = {id}
++----+-------------------+-----------------------------+----------+---------------+-------------+
+| id | name              | street                      | zip_code | date_of_birth | service_pin |
++----+-------------------+-----------------------------+----------+---------------+-------------+
+|  1 | Thomas Krause     | Leopoldstraße 64            |    97980 | 1973-11-19    |        8107 |
+|  2 | Stefanie Theissen | Genslerstraße 52            |    97980 | 1989-03-25    |        8382 |
+|  3 | Mike Mayer        | Brandenburgische Straße 79  |    97980 | 1981-04-09    |        5706 |
+|  4 | Ralph Achen       | Bayreuther Straße 86        |    97980 | 1969-05-17    |        6295 |
+|  5 | Swen Schweizer    | Los-Angeles-Platz 85        |    97980 | 1978-08-07    |        5001 |
++----+-------------------+-----------------------------+----------+---------------+-------------+
+
+ cities_zip | pk = {zip_code}
++----------+-----------------+
+| zip_code | city            |
++----------+-----------------+
+|    97980 | Bad Mergentheim |
++----------+-----------------+
+
+ drugs | pk = {drug_number}
++-------------+-----------------------------------------+-------+--------+----------+
+| drug_number | name                                    | price | box_id | quantity |
++-------------+-----------------------------------------+-------+--------+----------+
+|      168226 | Priorin Liquid                          | 23.94 | AF1    |       40 |
+|      197982 | Calcium-Sandoz Forte                    |  9.58 | VE5    |       34 |
+|      299548 | Chlorhexamed FORTE alkoholfrei          | 10.12 | Q27    |       28 |
+|      301181 | Bepanthen Meerwasser-Nasenspray         |  4.77 | 5DB    |       13 |
+|      359336 | Bepanthen Augentropfen                  |  18.6 | UBG    |       35 |
+|      379659 | ASS-ratiopharm 500 mg                   |  6.12 | S5P    |       11 |
+|      409789 | HYDROCORTISON-ratiopharm 0.5% Creme     |  5.49 | VPK    |       22 |
+|      502006 | Panthenol-ratiopharm Wundbalsam         |  5.53 | PL1    |       39 |
+|      611243 | PVP-Jod-Salbe Lichtenstein 100 mg       |  8.06 | 7DP    |       27 |
+|      655844 | Paracetamol-ratiopharm 250 mg Zäpfchen  |  1.22 | 1PH    |       14 |
+|      678876 | WALA Euphrasia Augentropfen             |  8.33 | 6NK    |       11 |
+|      712012 | Fungizid-ratiopharm Creme               |     6 | 4IX    |       29 |
+|      745404 | Sinupret extract                        | 21.44 | VXR    |       37 |
+|      796833 | ACC akut 600 mg Hustenlöser             |  5.99 | H7A    |       26 |
+|      827115 | ASPIRIN Complex Granulat                | 10.14 | A5X    |       10 |
+|      835339 | Magnesium Diasporal 300 mg              | 26.46 | YCZ    |       20 |
+|      851685 | IBU-ratiopharm 400 mg                   |  6.92 | PEQ    |       48 |
+|      870345 | Nasenspray-ratiopharm Panthenol         |  3.29 | O9G    |       24 |
+|      891950 | Bepanthen Wund- und Heilsalbe           | 10.99 | LS0    |       25 |
+|      912620 | Canesten EXTRA Bifonazol Creme          | 15.18 | NGV    |       15 |
+|      917859 | GeloMyrtol forte                        | 19.98 | 1X4    |       46 |
+|      925535 | Umckaloabo Lösung                       | 15.55 | 4PA    |       49 |
+|      961051 | Hyaluron-ratiopharm Augentropfen        | 16.16 | 05R    |       50 |
+|      986595 | Paracetamol-ratiopharm 500 mg           |  2.02 | YC0    |       10 |
++-------------+-----------------------------------------+-------+--------+----------+
+
+ boxes_storage | pk = {box_id}
++--------+------------+
+| box_id | storage_id |
++--------+------------+
+| 05R    | FSM        |
+| 1PH    | FQW        |
+| 1X4    | UIP        |
+| 4IX    | WAD        |
+| 4PA    | RAM        |
+| 5DB    | SUH        |
+| 6NK    | FSM        |
+| 7DP    | WAD        |
+| A5X    | FSM        |
+| AF1    | SUH        |
+| H7A    | FSM        |
+| LS0    | WAD        |
+| NGV    | BQA        |
+| O9G    | FQW        |
+| PEQ    | RAM        |
+| PL1    | RAM        |
+| Q27    | BDQ        |
+| S5P    | FSM        |
+| UBG    | BDQ        |
+| VE5    | BMR        |
+| VPK    | FSM        |
+| VXR    | FSM        |
+| YC0    | UCU        |
+| YCZ    | WAD        |
++--------+------------+
+```
+
